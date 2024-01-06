@@ -1,0 +1,64 @@
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: 
+Preço: 3.00 €
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: teste
+Preço: 3.00 €
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: Macbook Pro
+Preço: 50.00 €
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: Apple
+Preço: 60.00 €
+
+Produto:
+Nome: 
+Preço: 1.00 €
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: PSP
+Preço: 50.00 €
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: Apple 3
+Preço: 6000.00 €
+
+Produto:
+Nome: 
+Preço: 0.00 €
+
+Produto:
+Nome: teste apple
+Preço: 500.00 €

@@ -1,0 +1,90 @@
+Cliente:
+Nome: teste
+Morada: teste
+Telefone: 1
+Nif: 1
+
+Cliente:
+Nome: teste2
+Morada: teste2
+Telefone: 2
+Nif: 2
+
+Cliente:
+Nome: teste3
+Morada: teste3
+Telefone: 3
+Nif: 3
+
+Cliente:
+Nome: teste2
+Morada: teste2
+Telefone: 911168589
+Nif: 266396569
+
+Cliente:
+Nome: 2
+Morada: 2
+Telefone: 2
+Nif: 2
+
+Cliente:
+Nome: teste
+Morada: teste1
+Telefone: 90
+Nif: 90
+
+Cliente:
+Nome: TESTE23
+Morada: TRESTE23
+Telefone: 9111
+Nif: 9111
+
+Cliente:
+Nome: teste123
+Morada: teste123
+Telefone: 123
+Nif: 123
+
+Cliente:
+Nome: 0
+Morada: 0
+Telefone: 0
+Nif: 0
+
+Cliente:
+Nome: 0
+Morada: 0
+Telefone: 0
+Nif: 0
+
+Cliente:
+Nome: teste
+Morada: teste
+Telefone: 266396569
+Nif: 266396569
+Cliente:
+Nome: 2
+Morada: 2
+Telefone: 2
+Nif:2
+Cliente:
+Nome: 2
+Morada: 2
+Telefone: 22
+Nif:2
+Cliente:
+Nome: Alberto costa
+Morada: Rua do freixo
+Telefone: 911168589
+Nif:266396569
+Cliente:
+Nome: Alberto Forno
+Morada: Rua do Forno
+Telefone: 911168588
+Nif:266396568
+Cliente:
+Nome: 0
+Morada: 0
+Telefone: 0
+Nif:0

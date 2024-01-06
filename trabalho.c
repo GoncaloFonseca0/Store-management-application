@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 struct dadoscliente
 { // Estrutura dos dados do cliente (nome, nif, etc...)
@@ -106,12 +107,15 @@ void inserir_produto()
     }
 }
 
-void pesquisar_cliente()
+void pesquisar_cliente() // feito
 {
-    struct dadoscliente clientes; // coloquei como o filipe disse para nao baralhar
+    struct dadoscliente clientes;
     int nif_client, tele_client;
-    int telefone_client;
     int clienteEncontrado = 0;
+    int geral;
+    int escolha2;
+    int escolha;
+
     char line[256];
 
     FILE *dados = fopen("InfoClientes.txt", "r"); // Read only
@@ -120,13 +124,13 @@ void pesquisar_cliente()
         printf("oops, file can't be read \n");
         exit(-1);
     };
-    int geral;
+
     printf("\n---------------------------------------------------------------------------------------------\n");
     printf("1 - Digite o NIF do Cliente:\n");
     printf("2- Digite o Telemovel:");
     scanf("%d", &geral);
 
-    if (geral == 1)
+    if (geral == 1) // se escolher apção 1 compara o nif que foi introduzido com o nif no txt.
     {
         printf("Você escolheu a Opção 1.\n");
         printf("Introduza o NIF:\n");
@@ -143,7 +147,7 @@ void pesquisar_cliente()
                 printf("Informações do cliente:\n");
                 printf("Nome:%s\n Morada:%s\n Telefone:%d\n Nif: %d\n", clientes.nome, clientes.morada, clientes.telefone, clientes.nif);
                 clienteEncontrado = 1;
-                int escolha2;
+
                 printf("\n---------------------------------------------------------------------------------------------\n");
                 printf("Pretende procurar mais algum cliente?\n");
                 printf("1- Sim\n");
@@ -162,7 +166,7 @@ void pesquisar_cliente()
             }
         }
     }
-    else if (geral == 2)
+    else if (geral == 2) // se escolher apção 2 compara o telemovel que foi introduzido com o telemovel no txt.
     {
         printf("Você escolheu a Opção 2.\n");
         printf("Introduza o Telemovel:\n");
@@ -171,16 +175,16 @@ void pesquisar_cliente()
         {
             sscanf(line, "Nome: %[^\n]", clientes.nome);
             sscanf(line, "Morada: %[^\n]", clientes.morada);
-            sscanf(line, "Telefone: %d", &clientes.telefone);
+            sscanf(line, "Telemovel: %d", &clientes.telefone);
             sscanf(line, "Nif: %d", &clientes.nif);
 
             if (geral == clientes.telefone)
             {
                 printf("\n---------------------------------------------------------------------------------------------\n");
                 printf("Informações do cliente:\n");
-                printf("Nome:%s\n Morada:%s\n Telefone:%d\n Nif: %d\n", clientes.nome, clientes.morada, clientes.telefone, clientes.nif);
+                printf("Nome:%s\n Morada:%s\n telemovel:%d\n Nif: %d\n", clientes.nome, clientes.morada, clientes.telefone, clientes.nif);
                 clienteEncontrado = 1;
-                int escolha2;
+
                 printf("\n---------------------------------------------------------------------------------------------\n");
                 printf("Pretende procurar mais algum cliente?\n");
                 printf("1- Sim\n");
@@ -201,13 +205,11 @@ void pesquisar_cliente()
         }
     }
 
-    if (!clienteEncontrado)
+    if (clienteEncontrado != 1) // caso o NIF ou Telemovel introduzido não sejam compativeis com os no txt informa e volta a realizar o ciclo.
     {
 
         printf("\n---------------------------------------------------------------------------------------------\n");
-        printf("\nNIF inserido não encontrado: %d\n", nif_client);
-
-        int escolha;
+        printf("\nNIF inserido não encontrado: %d\n", geral);
         printf("\n---------------------------------------------------------------------------------------------\n");
         printf("Pretende introduzir mais algum cliente?\n");
         printf("1- Sim\n");
@@ -223,12 +225,136 @@ void pesquisar_cliente()
         {
             printf("Close");
         }
-
-        fclose(dados);
     }
 }
 void pesquisar_produto()
 {
+
+    struct dadosprodutos produtos;
+    char data[256];
+    char prod_name[50];
+    int produto_encontrado = 0;
+    char geral[100];
+    int escolha;
+    float price;
+
+    FILE *dados2 = fopen("InfoProdutos.txt", "r"); // Lê o documento
+    if (dados2 == NULL)
+    {
+        printf("oops, file can't be read \n");
+        exit(-1);
+    };
+
+    printf("\n---------------------------------------------------------------------------------------------\n");
+    printf("1 - Digite o Nome do Produto:\n");
+    printf("2- Digite o Preço do Produto:");
+    scanf("%s", geral);
+
+    if (strcmp(geral, "1") == 0) // se escolher a opção 1 compara o nome do produto com o que esta no txt.
+    {
+        printf("Você escolheu a Opção 1.\n");
+        printf("Introduza o Nome:\n");
+        scanf(" %[^\n]", prod_name);
+        while (fgets(data, sizeof(data), dados2)) // recebe a informação sobre o nome
+        {
+
+            sscanf(data, "Nome: %[^\n]", produtos.nome);
+            if (fgets(data, sizeof(data), dados2)) // recebe a informação sobre o Preço
+            {
+                sscanf(data, "Preço: %f", &produtos.preco);
+            }
+            if (strcmp(prod_name, produtos.nome) == 0)
+
+            {
+                printf("Informações do Produto:\n");
+                printf("Nome:%s\n Preço:%f", produtos.nome, produtos.preco);
+                produto_encontrado = 1;
+
+                printf("\n---------------------------------------------------------------------------------------------\n");
+                printf("Pretende procurar mais algum Produto?\n");
+                printf("1- Sim\n");
+                printf("2- Não\n");
+                printf("R:");
+                scanf("%d", &escolha);
+
+                if (escolha == 1)
+                {
+                    pesquisar_produto();
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        fclose(dados2);
+        if (produto_encontrado == 0)
+        {
+            printf("Produto %s Não Encontrado.", prod_name);
+        }
+    }
+    else if (strcmp(geral, "2") == 0) // se escolher a opção 2 compara o preço do produto com o do txt
+    {
+        printf("Você escolheu a Opção 2.\n");
+        printf("Introduza o Preço:\n");
+        scanf("%f", &price);
+        while (fgets(data, sizeof(data), dados2))
+        {
+
+            sscanf(data, "Nome: %[^\n]", produtos.nome);
+            sscanf(data, "Preço: %f €\n", &produtos.preco);
+
+            if (produtos.preco == price)
+
+            {
+                printf("\n---------------------------------------------------------------------------------------------\n");
+                printf("Informações do cliente:\n");
+                printf("Nome:%s Preço:%f\n", produtos.nome, produtos.preco);
+                produto_encontrado = 1;
+
+                printf("\n---------------------------------------------------------------------------------------------\n");
+                printf("Pretende procurar mais algum Produto?\n");
+                printf("1- Sim\n");
+                printf("2- Não\n");
+                printf("R:");
+                scanf("%d", &escolha);
+
+                if (escolha == 1)
+                {
+                    pesquisar_produto();
+                }
+                else
+                {
+
+                    break;
+                }
+            }
+        }
+    }
+
+    if (!produto_encontrado) // caso o Nome ou Numero introduzido não sejam compativeis com os no txt informa e volta a realizar o ciclo
+    {
+
+        printf("\n---------------------------------------------------------------------------------------------\n");
+        printf("\nNome inserido não encontrado: %s", geral);
+        printf("\n---------------------------------------------------------------------------------------------\n");
+        printf("Pretende procurar mais algum produto??\n");
+        printf("1- Sim\n");
+        printf("2- Não\n");
+        printf("R:");
+        scanf("%d", &escolha);
+
+        if (escolha == 1)
+        {
+            pesquisar_produto();
+        }
+        else
+        {
+            printf("Close");
+        }
+
+        fclose(dados2);
+    }
 }
 
 void alterar_cliente()
@@ -304,6 +430,9 @@ int main()
             break;
         case 3:
             pesquisar_cliente();
+            break;
+        case 4:
+            pesquisar_produto();
             break;
         }
 
